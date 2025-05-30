@@ -15,8 +15,7 @@ function App() {
         const nextNum = random(6);
         setNum(nextNum);
         setSum(sum + nextNum);
-        gameHistory.push(nextNum)
-        setGameHistory(gameHistory);
+        setGameHistory([...gameHistory, nextNum]);
     };
 
     const handleResetClick = () => {
