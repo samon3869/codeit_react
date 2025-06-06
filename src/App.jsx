@@ -2,6 +2,8 @@ import { useState } from 'react';
 import Dice from './Dice'
 import Button from './Button';
 import ScoreBoard from './ScoreBoard';
+import './App.css';
+
 
 function random(n) {
     return Math.floor(Math.random() * n + 1);
@@ -24,10 +26,10 @@ function App() {
     };
 
     return (
-        <div>
+        <div className="App">
             <div>
-                <Button onClick={handleRollClick}>던지기</Button>
-                <Button onClick={handleResetClick}>처음부터</Button>
+                <Button className="App-button" color='blue' onClick={handleRollClick}>던지기</Button>
+                <Button className="App-button" color='red' onClick={handleResetClick}>처음부터</Button>
             </div>
             <div>
                 <ScoreBoard name="나" color="blue" gameHistory={gameHistory} />
