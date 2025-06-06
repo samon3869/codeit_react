@@ -1,4 +1,19 @@
+.App {
+    width: 100%;
+    max-width: 640px;
+    margin: 20px auto;
+    text-align: center;
+}
+
 .App .App-button {
     margin: 6px;
 }
 
+.App .App-logo {
+    height: 65px;
+}
+
+.App .App-title {
+    margin: 10px auto 28px;
+    font-size: 28px;
+}

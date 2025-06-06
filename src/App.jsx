@@ -3,6 +3,7 @@ import Dice from './Dice'
 import Button from './Button';
 import ScoreBoard from './ScoreBoard';
 import './App.css';
+import diceGameLogo from './assets/logo.png'
 
 
 function random(n) {
@@ -28,12 +29,16 @@ function App() {
     return (
         <div className="App">
             <div>
-                <Button className="App-button" color='blue' onClick={handleRollClick}>던지기</Button>
-                <Button className="App-button" color='red' onClick={handleResetClick}>처음부터</Button>
-            </div>
-            <div>
-                <ScoreBoard name="나" color="blue" gameHistory={gameHistory} />
-                <ScoreBoard name="상대" color="red" gameHistory={otherGameHistory} />
+                <img className="App-logo" src = {diceGameLogo} alt="주사위게임 로고" />
+                <h1 className="App-title"> 주사위게임 </h1>
+                <div>
+                    <Button className="App-button" color='blue' onClick={handleRollClick}>던지기</Button>
+                    <Button className="App-button" color='red' onClick={handleResetClick}>처음부터</Button>
+                </div>
+                <div>
+                    <ScoreBoard name="나" color="blue" gameHistory={gameHistory} />
+                    <ScoreBoard name="상대" color="red" gameHistory={otherGameHistory} />
+                </div>
             </div>
         </div>
     );
