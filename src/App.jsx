@@ -35,9 +35,9 @@ function App() {
                     <Button className="App-button" color='blue' onClick={handleRollClick}>던지기</Button>
                     <Button className="App-button" color='red' onClick={handleResetClick}>처음부터</Button>
                 </div>
-                <div>
-                    <ScoreBoard name="나" color="blue" gameHistory={gameHistory} />
-                    <ScoreBoard name="상대" color="red" gameHistory={otherGameHistory} />
+                <div className="App-boards">
+                    <ScoreBoard className="App-board" name="나" color="blue" gameHistory={gameHistory} />
+                    <ScoreBoard className="App-board" name="상대" color="red" gameHistory={otherGameHistory} />
                 </div>
             </div>
         </div>

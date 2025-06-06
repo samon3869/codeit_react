@@ -17,3 +17,12 @@
     margin: 10px auto 28px;
     font-size: 28px;
 }
+
+.App .App-boards {
+  margin-top: 27px;
+}
+
+.App .App-board {
+  width: 30%;
+  margin: 10px;
+}
