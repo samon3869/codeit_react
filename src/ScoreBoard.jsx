@@ -1,10 +1,9 @@
 import Dice from './Dice';
 import './ScoreBoard.css';
 
-function ScoreBoard({ name, color, gameHistory, className='' }) {
+function ScoreBoard({ name, color, gameHistory, className='', sum, isWinner='' }) {
     const num = gameHistory.length > 0 ? gameHistory[gameHistory.length - 1] : 1;
-    const sum = gameHistory.reduce((acc, cur) => acc + cur, 0);
-    const classNames = `Board ${className}`;
+    const classNames = `Board ${className} ${isWinner ? 'Board-winner': ''}`;
     return (
         <div className={classNames}>
             <h2 className="Board-heading">{name}</h2>

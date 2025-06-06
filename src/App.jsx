@@ -4,6 +4,7 @@ import Button from './Button';
 import ScoreBoard from './ScoreBoard';
 import './App.css';
 import diceGameLogo from './assets/logo.png'
+import { useMemo } from 'react';
 
 
 function random(n) {
@@ -13,6 +14,12 @@ function random(n) {
 function App() {
     const [gameHistory, setGameHistory] = useState([]);
     const [otherGameHistory, setOtherGameHistory] = useState([]);
+    const gameHistorySum = useMemo(() => {
+        return gameHistory.reduce((acc, cur) => acc + cur, 0);
+    }, [gameHistory]);
+    const otherGameHistorySum = useMemo(() => {
+        return otherGameHistory.reduce((acc, cur) => acc + cur, 0);
+    }, [otherGameHistory]);
 
     const handleRollClick = () => {
         const nextNum = random(6);
@@ -36,8 +43,8 @@ function App() {
                     <Button className="App-button" color='red' onClick={handleResetClick}>처음부터</Button>
                 </div>
                 <div className="App-boards">
-                    <ScoreBoard className="App-board" name="나" color="blue" gameHistory={gameHistory} />
-                    <ScoreBoard className="App-board" name="상대" color="red" gameHistory={otherGameHistory} />
+                    <ScoreBoard className="App-board" name="나" color="blue" gameHistory={gameHistory} sum={gameHistorySum} isWinner={gameHistorySum>otherGameHistorySum}/>
+                    <ScoreBoard className="App-board" name="상대" color="red" gameHistory={otherGameHistory} sum={otherGameHistorySum} isWinner={gameHistorySum<otherGameHistorySum}/>
                 </div>
             </div>
         </div>
