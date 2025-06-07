@@ -1,70 +1,51 @@
-# GitHub Codespaces ♥️ React
+## 배포방법 정리
 
-Welcome to your shiny new Codespace running React! We've got everything fired up and running for you to explore React.
+### 1. local test
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+#### ① 프로젝트빌드
+웹 브라우저가 읽을 수 있는 형태로 리액트 프로젝트를 html js css로 빌드함
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+```bash
+npm run build
+```
 
-This project was bootstrapped for you with [Vite](https://vitejs.dev/).
+![run build 후 생성되는 파일들](./README_ASSETS/image.png)
 
-## Available Scripts
+#### ② 빌드된 프로젝트 로컬에서 실행
 
-In the project directory, you can run:
+```bash
+npx serve build -s dist 
+# vite로 만든 react프로젝트의 경우 dist 디렉토리에 정적파일들 생김
+# -s: SPA모드 (SPA = Single Page Application), SPA 모드인 경우에는 어떤 경로든 무조건 index.html을 반환
+```
 
-### `npm start`
+### 2. 배포
 
-We've already run this for you in the `Codespaces: server` terminal window below. If you need to stop the server for any reason you can just run `npm start` again to bring it back online.
+#### ① 버킷만들기
+![alt text](./README_ASSETS/image-4.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000/](http://localhost:3000/) in the built-in Simple Browser (`Cmd/Ctrl + Shift + P > Simple Browser: Show`) to view your running application.
 
-The page will reload automatically when you make changes.\
-You may also see any lint errors in the console.
+#### ② 정적 웹 사이트 호스팅 편집
+![alt text](./README_ASSETS/image-1.png)
 
-### `npm test`
+#### ③ 버킷 정책 편집
+![alt text](./README_ASSETS/image-2.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-You can learn more in the [Vite documentation](https://vitejs.dev/guide/).
-
-To learn Vitest, a Vite-native testing framework, go to [Vitest documentation](https://vitest.dev/guide/)
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://sambitsahoo.com/blog/vite-code-splitting-that-works.html](https://sambitsahoo.com/blog/vite-code-splitting-that-works.html)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://github.com/btd/rollup-plugin-visualizer#rollup-plugin-visualizer](https://github.com/btd/rollup-plugin-visualizer#rollup-plugin-visualizer)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://dev.to/hamdankhan364/simplifying-progressive-web-app-pwa-development-with-vite-a-beginners-guide-38cf](https://dev.to/hamdankhan364/simplifying-progressive-web-app-pwa-development-with-vite-a-beginners-guide-38cf)
-
-### Advanced Configuration
-
-This section has moved here: [https://vitejs.dev/guide/build.html#advanced-base-options](https://vitejs.dev/guide/build.html#advanced-base-options)
-
-### Deployment
-
-This section has moved here: [https://vitejs.dev/guide/build.html](https://vitejs.dev/guide/build.html)
-
-### Troubleshooting
-
-This section has moved here: [https://vitejs.dev/guide/troubleshooting.html](https://vitejs.dev/guide/troubleshooting.html)
+> <strong> 버킷정책의미 </strong> </br>
+> ```JSON
+> {
+>   "Version": "2012-10-17",
+>   "Statement": [
+>     {
+>       "Sid": "Statement1",                    // > 정책 식별자 (임의의 이름)
+>       "Effect": "Allow",                      // 허용(Allow)할지 거부(Deny)할지
+>       "Principal": "*",                       // 모든 사용자(익명 포함)
+>       "Action": "s3:GetObject",               // 객체 다운로드 권한
+>       "Resource": "arn:aws:s3:::dicegame.bbang2/*" // 이 버킷의 모든 파일
+>     }
+>   ]
+> }
+> 
+> ```
+#### ④ 소스코드 업로드
+![alt text](./README_ASSETS/image-3.png)
